@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Aux from './Aux/Aux';
+import GameInfoContainer from './containers/gameInfoContainer/GameInfoContainer'
+import Cards from './containers/cards/Cards';
 
 function App() {
+  const [startGame, setstartGame] = useState(false);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Aux>
+      {   
+        startGame ? null : <div className="overlayText" onClick={() => setstartGame(true)}>Click to Start</div>
+      } 
+      
+      <h1 onClick={() => console.log("clicked")} className="pageTitle" >Mix-Or-Match</h1>
+      <GameInfoContainer />
+      <Cards />
+    </Aux>
   );
 }
 
