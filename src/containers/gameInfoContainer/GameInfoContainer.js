@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Aux from '../../Aux/Aux';
-import classes from './GameInfoContainer.module.css';
-const gameInfoContainer = () => {
+import './GameInfoContainer.css';
+
+
+function GameInfoContainer ()  {
     const timeRemaining = 0;
     const flips = 0;
     return (
         <Aux>
-            <div className={classes.gameInfoContainer}>
-                <div className={classes.gameInfo}>
+            <div className="gameInfoContainer">
+                <div className="gameInfo">
                     Time <span> {timeRemaining}</span>
                 </div>
-                <div className={classes.gameInfo}>
+                <div className="gameInfo">
                     Flips <span>{flips}</span>
                 </div>
             </div>
@@ -19,4 +21,4 @@ const gameInfoContainer = () => {
 }
 
 
-export default gameInfoContainer;
+export default GameInfoContainer;

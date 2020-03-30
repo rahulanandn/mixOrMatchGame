@@ -6,11 +6,15 @@
 	justify-content: center;
 }
 
+p {
+	position: fixed;
+	align-items: center;
+	color: white
+}
 
 @media (max-width: 600px) {
 	.cardsContainer {
 		grid-template-columns: repeat(2, auto);
 	}
-
 	
 }

@@ -26,7 +26,21 @@ body {
     font-weight: normal;
     font-size: 6em;
     text-align: center;
+}
 
+.cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
+    margin: 50px;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .cardsContainer {
+        grid-template-columns: repeat(2, auto);
+    }
+    
 }
 
 .overlayText {
