@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 .gitignore
+/App2.js
 
 # testing
 /coverage

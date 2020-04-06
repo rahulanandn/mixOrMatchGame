@@ -7,13 +7,21 @@
 	grid-template-columns: repeat(1, auto); */
 }
 
-/* .card:hover .cardBack{
+ .card.rotate .cardBack{
     transform: rotateY(-180deg);
 }
 
-.card:hover .cardFront{
+.card.rotate .cardFront{
     transform: rotateY(0deg)
-} */
+} 
+
+.card.rotateback .cardBack{
+    transform: rotateY(0deg);
+}
+
+.card.rotateback .cardFront{
+    transform: rotateY(-180deg)
+} 
 
 .cardFace {
     position: absolute;
@@ -24,7 +32,7 @@
     align-items: center;
     overflow: hidden;
     backface-visibility: hidden;    
-    transition: transform 400ms ease-in-out;
+    transition: transform 500ms ease-in-out;
 }
 
 .cardBack {
@@ -80,7 +88,7 @@
 .cardFront {
     background-color: #FFBB89;
 	border-color: #333; 
-	/* transform: rotateY(180deg); */
+	transform: rotateY(180deg);
 }
 
 .cardFront:hover .cardValue{
