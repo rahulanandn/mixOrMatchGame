@@ -1,0 +1,75 @@
+@font-face {
+	font-family: "Creepy";
+	src: url("Assets/Fonts/Creepy.woff") format("woff");
+	/*, url
+	("Assets/Fonts/Creepy.woff2") format("woff2");*/
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100vh;
+}
+
+body {
+    margin: 0;
+    background: radial-gradient(#9D5900, #3D2200);
+}
+
+.pageTitle {
+    text-align: center;
+    font-family: Creepy;
+    color: #FF6D00;
+    font-weight: normal;
+    font-size: 6em;
+    text-align: center;
+}
+
+.cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 10px;
+    margin: 50px;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .cardsContainer {
+        grid-template-columns: repeat(2, auto);
+    }
+    
+}
+
+.overlayText {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    color: #FF6D00;
+    font-family: Creepy, serif;
+    animation: overlay-grow 500ms forwards;
+}
+
+@keyframes overlay-grow {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+        font-size: 0;
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.8);
+        font-size: 10em;
+    }
+}
+
+::selection {
+    background-color: red;
+    color: black;
+}

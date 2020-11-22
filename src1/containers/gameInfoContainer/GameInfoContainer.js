@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import Aux from '../../Aux/Aux';
 import './GameInfoContainer.css';
-import { useSelector } from 'react-redux';
-import Timer from './timer';
+
 
 function GameInfoContainer ()  {
-    const flips = useSelector(state => state.cards.totalFlips);
+    const timeRemaining = 0;
+    const flips = 0;
     return (
         <Aux>
             <div className="gameInfoContainer">
                 <div className="gameInfo">
-                     <span> <Timer /></span>
+                    Time <span> {timeRemaining}</span>
                 </div>
                 <div className="gameInfo">
                     Flips <span>{flips}</span>
@@ -19,4 +19,6 @@ function GameInfoContainer ()  {
         </Aux>
     )
 }
+
+
 export default GameInfoContainer;

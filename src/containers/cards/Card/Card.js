@@ -1,62 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Card.css';
 import Aux from '../../../Aux/Aux';
+import { cardMatch } from '../../../redux/cardSlice'
+import { openCard } from '../../../redux/cardSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {initiateFlipCount} from '../../../redux/cardSlice';
+import { closeCardState } from '../../../redux/cardSlice';
 
 function Card(props) {
 
-    const frontFaceImageUrl = props.frontImage;
-    const [count, setCount] = useState(0)
-    const clickTimes = props.clickTimes;
-    // const [matched, setMatched] = useState(props.matched);
-    const [rotate, setRotate] = useState(false);
+    const open = useSelector(state => state.cards.open)
+    const allCardMatchState = useSelector(state => state.cards.allCards)
+    
+    const matched = allCardMatchState[props.frontImage]
+    
+    const dispatch = useDispatch()
 
-    const clickFlipHandler = (event) => {
-        // console.log(event.currentTarget)
-        
-        console.log(typeof(event.currentTarget.className))
-        console.log(event.currentTarget)
-        if (props.matched) {
-            
-        } else {
-        if (clickTimes < 2 && count < 1 ) {
-            setCount(count + 1)
-            console.log(count)
-            // count = count +1;
-            // console.log('clicked')
-            props.clicked(frontFaceImageUrl)
-            // event.currentTarget.classList = [ "card rotate"]
-            event.currentTarget.className = "card rotate"
-            // setRotate(true) 
-            // console.log(props.clickTimes)
-            }
+    const shouldRotate = (event) => {
+        if (!matched && !props.clicked.clicked && !open ) {
+            if (props.flipCount <= 1){
+            //    setClicked(true)
+                dispatch(openCard(props.card))
+                props.onCardClicked(props.card)
+                if (props.flipCount === 1) {
+                    setTimeout(() => {
+                        dispatch(cardMatch())
+                        dispatch(closeCardState()) 
+                    },500)
+                    
+                    // add async not to run untill cardmatch finishes
+                    dispatch(initiateFlipCount())
+                } 
+        } 
         }
-    }
-    useEffect(() => {
-        if(count === 1) {
-            setCount(0)
-        }
-    })
+    } 
+    
     return ( 
         <Aux>
-        <div className= {`card ${props.matched? `matched rotate`: ``} ${props.noMatch? ``: null}`}  onClick={clickFlipHandler}>
-            
-                 <div className={`cardFront cardFace `}>
-                    <img className="cobWeb cobWebTopRight" alt='bottom-right' src={ require('../../../Assets/Images/CobwebGrey.png')} />
-                    <img className="cobWeb cobWebTopLeft" alt='bottom-left' src={ require('../../../Assets/Images/CobwebGrey.png')} />
-                    <img className="cobWeb cobWebBottomRight" alt='bottom-right' src={ require('../../../Assets/Images/CobwebGrey.png')} />
-                    <img className="cobWeb cobWebBottomLeft" alt='bottom-left' src={ require('../../../Assets/Images/CobwebGrey.png')} />
-                    <img className="cardValue" alt='face' src={ require(`../../../Assets/Images/${frontFaceImageUrl}.png`)}/>
-                </div>
-                
-                <div className= {`cardBack cardFace `}>
-                    <img className="cobWeb cobWebTopRight" alt='bottom-right' src={ require('../../../Assets/Images/Cobweb.png')} />
-                    <img className="cobWeb cobWebTopLeft" alt='bottom-left' src={ require('../../../Assets/Images/Cobweb.png')} />
-                    <img className="cobWeb cobWebBottomRight" alt='bottom-right' src={ require('../../../Assets/Images/Cobweb.png')} />
-                    <img className="cobWeb cobWebBottomLeft" alt='bottom-left' src={ require('../../../Assets/Images/Cobweb.png')} />
-                    <img className="spider" alt='back' src={ require('../../../Assets/Images/Spider.png')}/>
-                </div>           
-        </div>
+            <div className= {`card  ${props.clicked.clicked ? `rotate`  : ``} ${matched ? `matched ` : ''}`} onClick={shouldRotate}>
+                    <div className={`cardFront cardFace `}>
+                        <img className="cobWeb cobWebTopRight" alt='bottom-right' src={ require('../../../Assets/Images/CobwebGrey.png')} />
+                        <img className="cobWeb cobWebTopLeft" alt='bottom-left' src={ require('../../../Assets/Images/CobwebGrey.png')} />
+                        <img className="cobWeb cobWebBottomRight" alt='bottom-right' src={ require('../../../Assets/Images/CobwebGrey.png')} />
+                        <img className="cobWeb cobWebBottomLeft" alt='bottom-left' src={ require('../../../Assets/Images/CobwebGrey.png')} />
+                        <img className="cardValue" alt='face' src={ require(`../../../Assets/Images/${props.frontImage}.png`)}/>
+                    </div>
+                    
+                    <div className= {`cardBack cardFace `}>
+                        <img className="cobWeb cobWebTopRight" alt='bottom-right' src={ require('../../../Assets/Images/Cobweb.png')} />
+                        <img className="cobWeb cobWebTopLeft" alt='bottom-left' src={ require('../../../Assets/Images/Cobweb.png')} />
+                        <img className="cobWeb cobWebBottomRight" alt='bottom-right' src={ require('../../../Assets/Images/Cobweb.png')} />
+                        <img className="cobWeb cobWebBottomLeft" alt='bottom-left' src={ require('../../../Assets/Images/Cobweb.png')} />
+                        <img className="spider" alt='back' src={ require('../../../Assets/Images/Spider.png')}/>
+                    </div>           
+            </div>
         </Aux>
     )
-}
-export default Card;
+    }
+    export default Card;
