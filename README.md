@@ -1,5 +1,6 @@
-
+### Installation
 ```
+clone this project
 cd mixormatchgame
 npm install
 npm install
