@@ -6,8 +6,8 @@
 .pnp.js
 .gitignore
 /App2.js
-.././src1
-.././src2
+/src1
+/src2
 
 # testing
 /coverage
