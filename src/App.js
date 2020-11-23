@@ -19,7 +19,7 @@ function App() {
         startGame ? null : <div className="overlayText" onClick={() => dispatch(setStartGame(true))}>Click to Start</div>
       }
       {totalMatches === 8 ? <div className="overlayText" onClick={() => window.location.reload(false)}>Game Over</div> : null } 
-      <h1  className="pageTitle" >Mix-Or-Match</h1>
+      <h1  className="pageTitle" >Cards Match</h1>
       <GameInfoContainer />
       <Cards />
     </Aux>

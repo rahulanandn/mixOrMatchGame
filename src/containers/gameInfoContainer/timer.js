@@ -11,8 +11,8 @@ const Timer = () => {
     const dispatch = useDispatch()
     
     function reset() {
-    setSeconds(100);
-    dispatch(setStartGame(false))
+        setSeconds(100);
+        dispatch(setStartGame(false))
     }
 
     useEffect(() => {
