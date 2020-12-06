@@ -36,7 +36,10 @@ const cardsSlice = createSlice({
             state.startGame = action.payload
         },
         openCard (state, action) {
-            const { id, cardName } = action.payload
+            const { 
+                id, 
+                cardName 
+            } = action.payload
             const card = state.clickedCards.find(card => card.id === id)
             card.clicked = true;
         },

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Aux from '../../Aux/Aux';
 import './GameInfoContainer.css';
 import { useSelector } from 'react-redux';
